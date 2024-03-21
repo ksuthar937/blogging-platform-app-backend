@@ -15,6 +15,19 @@ const createBlog = async (title, description, imageURL, userId) => {
   }
 };
 
+const getBlog = async (blogId) => {
+  try {
+    const getBlog = await blogModel.findOne({ _id: blogId });
+
+    if (!getBlog) {
+      throw new Error("This blog doesn't exist!");
+    }
+    return getBlog;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const updateBlog = async (title, description, imageURL, userId, blogId) => {
   try {
     const getBlog = await blogModel.findOne({ _id: blogId });
@@ -109,6 +122,7 @@ const getComment = async (blogId) => {
 
 module.exports = {
   createBlog,
+  getBlog,
   updateBlog,
   deleteBlog,
   getAllBlogs,

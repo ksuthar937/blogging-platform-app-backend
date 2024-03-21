@@ -18,6 +18,22 @@ const createBlog = async (req, res) => {
   }
 };
 
+const getBlog = async (req, res) => {
+  try {
+    const blogId = req.params.id;
+
+    const blog = await blogService.getBlog(blogId);
+    res.status(200).json({
+      success: true,
+      blog,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 const updateBlog = async (req, res) => {
   try {
     const { title, description, imageURL } = req.body;
@@ -110,6 +126,7 @@ const getComment = async (req, res) => {
 
 module.exports = {
   createBlog,
+  getBlog,
   updateBlog,
   deleteBlog,
   getAllBlogs,

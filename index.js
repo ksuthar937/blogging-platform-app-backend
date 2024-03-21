@@ -14,6 +14,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
+//routes
 app.use("/api/users", userRoute);
 app.use("/api/blogs", blogRoute);
 
